@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Home</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Profils</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<div sec:authorize="isAuthenticated()">
+							<h2 class="card-title">Mes réservations</h2>
+							<table class="table table-dark table-responsive col-auto row col-md-8 col-md-push-8">
+								<tr>
+									<th scope="col">titre</th>
+									<th scope="col">auteur</th>
+									<th scope="col">date d'emprunt</th>
+									<th scope="col">Delai</th>
+									<th scope="col">Etendre</th>
+								</tr>
+								<tr th:each="booking : ${bookings}">
+							        <td th:text="${booking?.copy?.book?.title}">...</td>
+							        <td th:text="${booking?.copy?.book?.author}">...</td>
+							        <td th:text="${#dates.format(booking?.booking_date, 'dd-MM-yyyy')}">...</td>
+							        <td th:text="${booking?.delay}">...</td>
+							        <td th:if="${booking?.delay} == false">
+							        	<a th:href="@{/booking/extend(id = ${booking?.id})}" class="btn btn-outline-secondary">1 mois</a>
+							        </td>
+							    </tr>
+							</table>
+						</div>
+						</br>
+						<div sec:authorize="isAuthenticated()">
+							<h2 class="card-title">En attente de réponse</h2>
+							<table class="table table-dark table-responsive col-auto row col-md-8 col-md-push-8">
+								<tr>
+									<th scope="col">titre</th>
+									<th scope="col">auteur</th>
+									<th scope="col">date d'emprunt</th>
+									<th scope="col">Valider ?</th>
+								</tr>
+								<tr th:each="bookingsNotAccepted : ${bookingsNotAccepteds}">
+							        <td th:text="${bookingsNotAccepted?.copy?.book?.title}">...</td>
+							        <td th:text="${bookingsNotAccepted?.copy?.book?.author}">...</td>
+							        <td th:text="${#dates.format(bookingsNotAccepted?.booking_date, 'dd-MM-yyyy')}">...</td>
+							        <td>
+							        	<a th:href="@{/booking/userclaim(id = ${bookingsNotAccepted?.id}, userclaim = ${true})}" class="btn btn-outline-secondary">Oui</a>
+							        	<a th:href="@{/booking/userclaim(id = ${bookingsNotAccepted?.id}, userclaim = ${false})}" class="btn btn-outline-secondary">Non</a>
+							        </td>
+							    </tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

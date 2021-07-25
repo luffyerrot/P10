@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Edition</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+				<h1 class="card-title"><b>Création de profil :</b></h1>
+				<br/>
+				<div class="card-body">
+					<form action="#" th:action="@{/create}" th:objet="${user}" method="post">
+						<div class="form-group">
+							<label>Pseudo :</label>
+							<input type="text" th:name="username" placeholder="Votre pseudo" autofocus class="form-control"/>
+						</div>
+						<br/>
+						<div class="form-group">
+							<label>Adresse mail :</label>
+							<input type="email" th:name="email" placeholder="Votre adresse mail" class="form-control"/>
+						</div>
+						<br/>
+						<div class="form-group">
+							<label>Mot de passe :</label>
+							<input type="password" th:name="password" placeholder="Votre Mot de passe" class="form-control"/>
+						</div>
+						<br/>
+						<input type="submit" value="Envoyer"  class="btn btn-outline-secondary" id="link"/>
+					</form>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

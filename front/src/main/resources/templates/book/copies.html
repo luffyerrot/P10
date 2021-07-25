@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Ajouter</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Ajouter un livre</b></h1>
+				<div class="card">
+					<div class="card-body">
+					<form th:action="@{/book/admin/copies}" method="post" th:each="available, aStat : ${availables}">
+						<input type="text" th:field="*{availables[__${aStat.index}__].label}" th:name="etats" placeholder="L'etat du livre" class="form-control"></input>
+						<br/>
+						<input type="submit" value="Créer" class="btn btn-outline-secondary" id="link"/>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" th:href="@{/}">Home</a>
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<a class="navbar-brand" th:href="@{/admin/}">AdminHome</a>
+	</div>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+    </button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<div sec:authorize="hasRole('ROLE_USER')">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion</a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			        	<a class="dropdown-item" th:href="@{/book/}">Tous les livres</a>
+			       		<div class="dropdown-divider"></div>
+			        	<a class="dropdown-item" th:href="@{/booking/}">Reserver</a>
+			        	<a class="dropdown-item" th:href="@{/request/}">Mes demandes en attente</a>
+			        </div>
+				</li>
+			</ul>
+		</div>
+		<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">	
+			<li class="nav-item" active><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+		</ul>
+		<ul class="navbar-nav mr-auto" sec:authorize="!isAuthenticated()">
+			<li class="nav-item"><a class="nav-link" th:href="@{/create}">Inscription</a></li>
+			<li class="nav-item" active><a class="nav-link" th:href="@{/login}">Connection</a></li>
+		</ul>
+		<div>
+			<form class="form-inline my-2 my-lg-0" action="#" th:action="@{/book/search}" method="get">
+    			<input class="form-control mr-sm-2" type="search" name="author" id="author" placeholder="l'auteur" value=""></input>
+    			<input class="form-control mr-sm-2" type="search" name="title" placeholder="le titre" value=""></input>
+    			<input class="btn btn-success" type="submit" value="Rechercher"></input>
+			</form>
+		</div>
+	</div>
+</nav>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Livres</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Livres</b></h1>
+				<div class="card">
+					<div class="card-body">
+					<table class="text-nowrap table table-dark table-responsive col-auto row col-md-9 col-md-push-12">
+						<tr>
+							<th scope="col">Titre</th>
+							<th scope="col">Auteur</th>
+							<th scope="col">Editeur</th>
+							<th scope="col">Date de parution</th>
+							<th sec:authorize="isAuthenticated()" scope="col">Détail</th>
+						</tr>
+						<tr th:each="book : ${books}">
+					        <td th:text="${book.title}">...</td>
+					        <td th:text="${book.author}">...</td>
+					        <td th:text="${book.publisher}">...</td>
+							<td th:text="${#dates.format(book.release_date, 'dd-MM-yyyy')}">...</td>
+							<td sec:authorize="isAuthenticated()"><a th:href="@{/book/detail(ibn = ${book.ibn})}"  class="btn btn-outline-secondary" id="link">Détails</a></td>
+					    </tr>
+					</table>
+					<br/>
+					<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/book/admin/create}"  class="btn btn-outline-secondary" id="link">Ajouter</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

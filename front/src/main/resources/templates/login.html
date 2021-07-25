@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org" 
+ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+<title>Log in</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<div class ="card">
+					<h2 class="card-title">Login Form</h2>
+					<div class="card-body">
+					<form action="home" th:action="@{/login}" method="post">
+							<div class="form-group has-feedback">
+								 <input type="email" class="form-control" name="username"
+								  placeholder="Email" /> <span
+								  class="glyphicon glyphicon-envelope form-control-feedback"></span>
+							</div>
+							<div class="form-group has-feedback">
+								 <input type="password" class="form-control" name="password"
+								  placeholder="Password" /> <span
+								  class="glyphicon glyphicon-lock form-control-feedback"></span>
+							</div>
+							<div class="form-group">
+								<label>
+								 	<input type="checkbox" name="remember-me"> Remember Me
+								</label>
+							</div>
+							<div class="row">
+								<div class="form-group col-xs-offset-8 col-xs-4">
+									<button type="submit" class="btn btn-primary btn-block btn-flat">LogIn</button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+							 		<div th:if="${param.error}"
+							   			class="alert alert-danger alert-dismissable">
+										   <p>
+										    <i class="icon fa fa-ban"></i> <span>Invalid Email and
+										     Password.</span>
+										   </p>
+							  		</div>
+							  		<div th:if="${param.logout}" class="alert alert-info alert-dismissable">
+										<p>
+									   		<i class="icon fa fa-info"></i> <span>You have been logged out.</span>
+									    </p>
+							  		</div>
+							 	</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

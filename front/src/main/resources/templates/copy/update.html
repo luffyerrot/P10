@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Modifier</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Modifier un livre</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<form th:action="@{/copy/admin/update(ibn = ${ibn})}" th:objet="${copy}" method="post">
+							<input type="hidden" th:name="id" th:value="${copyid.id}" class="form-control"></input>
+							<input type="text" th:name="etat" th:value="${copyid.etat}" placeholder="l'etat du livre"  autofocus class="form-control"></input>
+							<br/>
+							<input type="submit" value="Update" class="btn btn-outline-secondary" id="link"/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Detail</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Detail d'un livre</b></h1>
+				<div class="card">
+					<div class="card-body">
+					<table class="table table-dark table-responsive col-auto row col-md-8 col-md-push-10">  
+						<tr>
+							<th scope="col">Titre</th>
+							<th scope="col">Auteur</th>
+							<th scope="col">Editeur</th>
+							<th scope="col">Nombre de livres</th>
+							<th scope="col">Date de parution</th>
+							<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Update</th>
+							<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Supprimer</th>
+						</tr> 
+					    <tr>
+					        <td th:text="${book.title}">...</td>
+					        <td th:text="${book.author}">...</td>
+					        <td th:text="${book.publisher}">...</td>
+					        <td th:text="${copyNum}">...</td>
+							<td th:text="${#dates.format(book.release_date, 'dd-MM-yyyy')}">...</td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/book/admin/update(ibn = ${book.ibn})}"  class="btn btn-outline-secondary" id="link">Modifier</a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/book/admin/delete(ibn = ${book.ibn})}"  class="btn btn-outline-secondary" id="link">Supprimer</a></td>
+					    </tr>
+					</table>
+					<br/>
+					<table class="table table-dark table-responsive col-auto row col-md-5 col-md-push-5">  
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Etat</th>
+							<th scope="col">Id</th>
+							<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Update</th>
+							<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Supprimer</th>
+						</tr> 
+					    <tr th:each="copie, cStat : ${copies}">
+					        <td th:text="${cStat.index} + 1">...</td>
+					        <td th:text="${copie?.etat}">...</td>
+					        <td th:text="${copie?.id}">...</td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/copy/admin/update(id = ${copie.id},ibn = ${book.ibn})}"  class="btn btn-outline-secondary" id="link">Modifier</a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/copy/admin/delete(id = ${copie.id},ibn = ${book.ibn})}"  class="btn btn-outline-secondary" id="link">Supprimer</a></td>
+					    </tr>
+					</table>
+					<br/>
+						<div sec:authorize="hasRole('ROLE_ADMIN')">
+							<a th:href="@{/copy/admin/create(ibn = ${book.ibn})}"  class="btn btn-outline-secondary" id="link">Ajouter une copie</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

@@ -1,0 +1,536 @@
+{
+	"info": {
+		"_postman_id": "59474fe5-05b3-4041-8fa8-7faa04a0e168",
+		"name": "projet7-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "userSave",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test@test.test\",\r\n    \"password\": \"1234\",\r\n    \"username\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/user/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userUpdate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test1@test1.test\",\r\n    \"username\": \"test1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/user/update/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userGetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userGetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "book",
+			"item": [
+				{
+					"name": "bookSave",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author\": \"test\",\r\n    \"publisher\": \"moi\",\r\n    \"release_date\": \"2020-06-22\",\r\n    \"title\": \"le titre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/book/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookUpdate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author\": \"test\",\r\n    \"publisher\": \"moi\",\r\n    \"release_date\": \"2020-06-22 20:14:00\",\r\n    \"title\": \"le titre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/book/update/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/book/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookGetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/book/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookGetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/book/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "booking",
+			"item": [
+				{
+					"name": "bookingSave",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"booking_date\": \"1820-04-16 15:43:22\",\r\n    \"delay\": \"false\",\r\n    \"rendering\": \"false\",\r\n    \"copy_id\": \"1\",\r\n    \"user_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/booking/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingUpdate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"2\",\r\n    \"booking_date\": \"1820-04-16 15:43:22\",\r\n    \"delay\": \"true\",\r\n    \"recall\": \"12\",\r\n    \"copy_id\": \"1\",\r\n    \"user_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/booking/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/booking/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingGetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/booking/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingGetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/booking/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingGetDate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/booking/getdate",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"getdate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingGetByUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/booking/userid/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"userid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "copy",
+			"item": [
+				{
+					"name": "copySave",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"available\": \"14\",\r\n    \"book_ibn\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/copy/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"copy",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "copyUpdate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"available\": \"10\",\r\n    \"book_ibn\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/copy/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"copy",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "copyDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/copy/delete/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"copy",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "copyGetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/copy/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"copy",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "copyGetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/copy/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"copy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

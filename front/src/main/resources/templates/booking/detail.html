@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Réserver un livre</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Le livre</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-dark table-responsive col-auto row col-md-4 col-md-push-8">
+							<tr>
+								<th scope="col">Titre</th>
+								<th scope="col">Auteur</th>
+								<th scope="col">Editeur</th>
+							</tr>
+							<tr>
+						        <td th:text="${book.title}">...</td>
+						        <td th:text="${book.author}">...</td>
+						        <td th:text="${book.publisher}">...</td>
+						    </tr>
+						</table>
+					</div>
+				</div>
+				<h1><b>Les copies</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<div th:if="${full}"> 
+							<p>Le prochain <b>retour</b> estimé, est prévu pour le : <span th:text="${#dates.format(firstdate, 'dd/MM/yyyy')}">...</span></p>
+						</div>
+						<table class="table table-dark table-responsive col-auto row col-md-4 col-md-push-8">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Etat</th>
+								<th scope="col">Disponible</th>
+							</tr>
+							<tr th:each="copie, cStat : ${copies}">
+						        <td th:text="${cStat.index}">...</td>
+						        <td th:text="${copie.etat}">...</td>
+								<td>
+									<div th:if="${userbookingcopy.contains(copie.id)}">
+										<p align="center">Non</p>
+									</div>
+									<div th:unless="${userbookingcopy.contains(copie.id)}">
+										<p align="center">Oui</p>
+									</div>
+								</td>
+						    </tr>
+						</table>
+					</div>
+				</div>
+				<div th:if="${full}">
+					<h1>File d'attente</h1>
+					<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+		        		<a class="btn btn-outline-info" th:href="@{/booking/admin/request(ibn = ${ibn})}">Ajouter à la liste / Supprimer de la liste</a>
+					</div>
+					<div th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+						<div th:unless="${#lists.contains(requestuserids, userid)}">
+							<form class="form-align my-1 my-lg-0" action="#" th:action="@{/booking/request/create}" method="get">
+				    			<input type="hidden" th:value="${ibn}" th:name="ibn"></input>
+				    			<br/>
+				    			<input class="btn btn-success" type="submit" th:value="Demande"></input>
+							</form>
+						</div>
+						<div th:if="${#lists.contains(requestuserids, userid)}">
+							<form class="form-align my-1 my-lg-0" action="#" th:action="@{/booking/request/delete}" method="get">
+				    			<input type="hidden" th:value="${ibn}" th:name="ibn"></input>
+				    			<br/>
+				    			<input class="btn btn-success" type="submit" th:value="Annuler"></input>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div th:unless="${full}">
+					<h1>Demande de prêt</h1>
+					</br>
+			        <a class="btn btn-outline-info" th:href="@{/booking/create(ibn = ${ibn})}">Demande</a>
+				</div>
+				</br>
+					<h1><b>Liste des Utilisateurs en attente</b></h1>
+					<div class="card">
+						<div class="card-body">
+						<table class="table table-dark table-responsive col-auto row col-md-4 col-md-push-8">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Username</th>
+								<th scope="col">Date de demande</th>
+							</tr>
+							<tr th:each="request, cStat : ${requests}">
+						        <td th:if="${request?.user?.id != userid}" th:text="${cStat.index + 1}">...</td>
+						        <td th:if="${request?.user?.id != userid}" th:text="${request?.user?.username}">...</td>
+								<td th:if="${request?.user?.id != userid}" th:text="${#dates.format(request?.release_date, 'dd-MM-yyyy')}">...</td>
+						        <td th:unless="${request?.user?.id != userid}" class="bg-danger text-dark" th:text="${cStat.index + 1}">...</td>
+						        <td th:unless="${request?.user?.id != userid}" class="bg-danger text-dark" th:text="${request?.user?.username}">...</td>
+								<td th:unless="${request?.user?.id != userid}" class="bg-danger text-dark" th:text="${#dates.format(request?.release_date, 'dd-MM-yyyy')}">...</td>
+						    </tr>
+						</table>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

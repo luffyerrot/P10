@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Prêts</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Prêts en attente de validation</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<table class="text-nowrap table table-dark table-responsive col-auto row col-md-9 col-md-push-12">
+							<tr>
+								<th scope="col">Titre du livre</th>
+								<th scope="col">Nom de l'utilisateur</th>
+								<th scope="col">Date d'emprunt</th>
+								<th scope="col">Etat du livre</th>
+								<th scope="col">Accepter ?</th>
+							</tr>
+							<tr th:each="bookingsnotaccepted : ${bookingsnotaccepteds}">
+						        <td th:text="${bookingsnotaccepted?.copy?.book?.title}">...</td>
+						        <td th:text="${bookingsnotaccepted?.user?.username}">...</td>
+						        <td th:text="${#dates.format(bookingsnotaccepted?.booking_date, 'dd-MM-yyyy')}">...</td>
+						        <td th:text="${bookingsnotaccepted?.copy?.etat}">...</td>
+								<td>
+								<a th:href="@{/booking/admin/accepted(id = ${bookingsnotaccepted.id}, accepted = ${true})}"  class="btn btn-outline-secondary" id="link">oui</a>
+								<a th:href="@{/booking/admin/accepted(id = ${bookingsnotaccepted.id}, accepted = ${false})}"  class="btn btn-outline-secondary" id="link">non</a>
+								</td>
+						    </tr>
+						</table>
+					</div>
+				</div>
+				<h1><b>Prêts validé non récupéré</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<table class="text-nowrap table table-dark table-responsive col-auto row col-md-9 col-md-push-12">
+							<tr>
+								<th scope="col">Titre du livre</th>
+								<th scope="col">Nom de l'utilisateur</th>
+								<th scope="col">Date d'emprunt</th>
+								<th scope="col">Etat du livre</th>
+								<th scope="col">Récupéré ?</th>
+							</tr>
+							<tr th:each="booking : ${bookings}">
+						        <td th:text="${booking?.copy?.book?.title}">...</td>
+						        <td th:text="${booking?.user?.username}">...</td>
+						        <td th:text="${#dates.format(booking?.booking_date, 'dd-MM-yyyy')}">...</td>
+						        <td th:text="${booking?.copy?.etat}">...</td>
+								<td><a th:href="@{/booking/admin/rendering(id = ${booking.id})}"  class="btn btn-outline-secondary" id="link">oui</a></td>
+						    </tr>
+						</table>
+					</div>
+				</div>
+				<h1><b>Historique des prêts</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<table class="text-nowrap table table-dark table-responsive col-auto row col-md-9 col-md-push-12">
+							<tr>
+								<th scope="col">Titre du livre</th>
+								<th scope="col">Nom de l'utilisateur</th>
+								<th scope="col">Date d'emprunt</th>
+								<th scope="col">Etat du livre</th>
+								<th scope="col">Récupéré</th>
+							</tr>
+							<tr th:each="bookingshistorique : ${bookingshistoriques}">
+						        <td th:text="${bookingshistorique?.copy?.book?.title}">...</td>
+						        <td th:text="${bookingshistorique?.user?.username}">...</td>
+						        <td th:text="${#dates.format(bookingshistorique?.booking_date, 'dd-MM-yyyy')}">...</td>
+						        <td th:text="${bookingshistorique?.copy?.etat}">...</td>
+								<td th:if="${bookingshistorique.rendering == true}">Oui</td>
+						    </tr>
+						</table>
+					</div>
+				</div>
+				<h1><b>Prêts refusé</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<table class="text-nowrap table table-dark table-responsive col-auto row col-md-9 col-md-push-12">
+							<tr>
+								<th scope="col">Titre du livre</th>
+								<th scope="col">Nom de l'utilisateur</th>
+								<th scope="col">Date d'emprunt</th>
+								<th scope="col">Etat du livre</th>
+								<th scope="col">Demande</th>
+							</tr>
+							<tr th:each="bookingsdenied : ${bookingsdenieds}">
+						        <td th:text="${bookingsdenied?.copy?.book?.title}">...</td>
+						        <td th:text="${bookingsdenied?.user?.username}">...</td>
+						        <td th:text="${#dates.format(bookingsdenied?.booking_date, 'dd-MM-yyyy')}">...</td>
+						        <td th:text="${bookingsdenied?.copy?.etat}">...</td>
+								<td>refusé</td>
+						    </tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>

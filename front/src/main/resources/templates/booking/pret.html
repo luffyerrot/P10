@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:insert="fragments/head.html">
+	<meta charset="UTF-8"/>
+	<title>Prêt</title>
+</head>
+<body>
+	<header th:insert="fragments/header.html"></header>
+	<div class="container" id="main" align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<h1><b>Prêt</b></h1>
+				<div class="card">
+					<div class="card-body">
+						<form class="form-inline my-1 my-lg-0" action="#" th:action="@{/booking/admin/create}" method="get">
+			    			<input type="hidden" th:value="${copie.id}" th:name="id"></input>
+			    			<input class="form-control mr-sm-2" type="email" th:name="email" placeholder="l'e-mail de l'utilisateur" required></input>
+			    			<br/>
+			    			<input class="btn btn-success" type="submit" th:value="Valider"></input>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div th:insert="fragments/script.html"></div>
+	<div th:insert="fragments/footer.html"></div>
+</body>
+</html>
