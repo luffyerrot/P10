@@ -25,7 +25,7 @@ Le chemin d'accès à la base de données :
 
 # Les requêtes Postman :
 
-Dans le dossier api-rest vous trouverez le fichier nommé __postman__, dans lequel vous aurez la collection des requêtes postman.
+Dans le dossier back vous trouverez le fichier nommé __postman__, dans lequel vous aurez la collection des requêtes postman ainsi que les tests de l'API Rest.
 
 # Informations utiles :
 
