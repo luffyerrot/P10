@@ -61,10 +61,7 @@ public class BookingController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Booking> getById(@PathVariable Long id) {
 		Booking bookingById = bookingService.getById(id);
-		if (bookingById != null) {
-			return ResponseEntity.ok(bookingById);
-		}
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(bookingById);
 	}
 
     /**
@@ -159,13 +156,14 @@ public class BookingController {
 	}
 
     /**
-     * Met à jour et renvoi une réservation avec l'Id.
+     * Met à jour une réservation avec l'Id.
      **/
 	@PostMapping("/update/{id}")
-	public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody Booking booking) {
+	public ResponseEntity<Void> updateBooking(@PathVariable Long id, @RequestBody Booking booking) {
 		Booking bookingById = bookingService.getById(id);
 		if (bookingById != null && booking.getId() == bookingById.getId()) {
-			return ResponseEntity.ok(bookingService.save(bookingById));
+			bookingService.save(bookingById);
+			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
 	}

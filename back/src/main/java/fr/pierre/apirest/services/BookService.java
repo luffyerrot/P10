@@ -23,24 +23,32 @@ public class BookService {
 	Logger logger = LoggerFactory.getLogger(BookService.class);
 	
 	public Book getByIbn(Long ibn) {
-		this.logger.debug("getByIbn Call = " + ibn);
+		this.logger.info("getByIbn Call = " + ibn);
 		Book book = bookRepository.findById(ibn).get();
-		this.logger.debug("getByIbn Return = " + book);
+		this.logger.info("getByIbn Return = " + book);
 		return book;
 	}
 	
 	public List<Book> getByAuthorOrTitle(String author, String title) {
-		this.logger.debug("getByAuthorAndTitle Call = " + author + " " + title);
+		this.logger.info("getByAuthorAndTitle Call = " + author + " " + title);
 		List<Book> books = bookRepository.findByAuthorOrTitle(author, title);
-		this.logger.debug("getByAuthorAndTitle Return = " + books);
+		this.logger.info("getByAuthorAndTitle Return = " + books);
 		return books;
 	}
 
 	public Book save(Book book) {
-		this.logger.debug("save Call = " + book);
+		book.setCopies(null);
+		this.logger.info("save Call = " + book);
 		Book bookreturn = bookRepository.save(book);
-		this.logger.debug("save Return = " + bookreturn);
+		this.logger.info("save Return = " + bookreturn);
 		return bookreturn;
+	}
+	
+	public Book update(Book book) {
+		this.logger.info("update Call = " + book);
+		Book bookReturn = bookRepository.save(book);
+		this.logger.info("update Return = " + bookReturn);
+		return bookReturn;
 	}
 	
 	public void delete(Long ibn) {
@@ -50,19 +58,13 @@ public class BookService {
 
 	public List<Book> findAll() {
 		List<Book> books = bookRepository.findAll();
-		this.logger.debug("findAll Return = " + books);
+		this.logger.info("findAll Return = " + books);
 		return books;
 	}
 	
 	public List<Book> findByRequestsNotNull() {
 		List<Book> books = bookRepository.findByRequestsNotNull();
-		this.logger.debug("findAll Return = " + books);
+		this.logger.info("findAll Return = " + books);
 		return books;
-	}
-	
-	public Book create(Book book) {
-		book.setCopies(null);
-		Book book1 = bookRepository.save(book);
-		return book1;
 	}
 }

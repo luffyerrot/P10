@@ -31,10 +31,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 	@Modifying
 	@Query("UPDATE Booking b SET b.accepted = :accepted WHERE b.id = :id")
 	public void changeAccepted(@Param("id")Long id, @Param("accepted")Boolean accepted);
-	
-	@Modifying
-	@Query("UPDATE Booking b SET b = :booking WHERE b.id = :id")
-	public Booking update(@Param("booking")Booking booking, @Param("id")Long id);
 
 	@Modifying
 	@Query("UPDATE Booking b SET b.booking_date = :date WHERE b.id = :id")

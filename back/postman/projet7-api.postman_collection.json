@@ -69,9 +69,15 @@
 					"name": "userDelete",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyNzQ0Mjk2OSwiaWF0IjoxNjI3NDA2OTY5fQ.utGTr23bSyGAu1laZCcc0x_fol1Gg6BSvrvHWj-b1pg",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "localhost:8080/user/delete/1",
+							"raw": "localhost:8080/user/delete/8",
 							"host": [
 								"localhost"
 							],
@@ -79,7 +85,7 @@
 							"path": [
 								"user",
 								"delete",
-								"1"
+								"8"
 							]
 						}
 					},
@@ -87,9 +93,28 @@
 				},
 				{
 					"name": "userGetAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/user/",
 							"host": [
@@ -106,9 +131,28 @@
 				},
 				{
 					"name": "userGetById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/user/1",
 							"host": [
@@ -118,6 +162,45 @@
 							"path": [
 								"user",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userFindByEmail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/user/find/user@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"find",
+								"user@gmail.com"
 							]
 						}
 					},
@@ -217,9 +300,28 @@
 				},
 				{
 					"name": "bookGetAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/book/",
 							"host": [
@@ -236,9 +338,28 @@
 				},
 				{
 					"name": "bookGetById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/book/1",
 							"host": [
@@ -248,6 +369,44 @@
 							"path": [
 								"book",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookGetByRequestId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/book/requestnotnull",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"requestnotnull"
 							]
 						}
 					},
@@ -318,7 +477,13 @@
 					"name": "bookingDelete",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Baerer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyNTc2MjY2NSwiaWF0IjoxNjI3NDY1NjMzfQ.dELvrPAJjwrDFWJduMP-h6usbTP7w7Art0O5k5FR0wY",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/booking/delete/1",
 							"host": [
@@ -335,10 +500,29 @@
 					"response": []
 				},
 				{
-					"name": "bookingGetAll",
+					"name": "bookingGetAllNotRendered",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/booking/",
 							"host": [
@@ -354,10 +538,67 @@
 					"response": []
 				},
 				{
-					"name": "bookingGetById",
+					"name": "bookingGetAllRendered",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/booking/rendered",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"rendered"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingGetById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/booking/1",
 							"host": [
@@ -374,9 +615,28 @@
 				},
 				{
 					"name": "bookingGetDate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/booking/getdate",
 							"host": [
@@ -393,9 +653,28 @@
 				},
 				{
 					"name": "bookingGetByUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/booking/userid/1",
 							"host": [
@@ -406,6 +685,188 @@
 								"booking",
 								"userid",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingGetByUserIdAndAccepted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userclaim\": \"null\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/booking/useridandaccepted/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"useridandaccepted",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingAllNotRenderedAndAcceptedNull",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accepted\": \"null\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/booking/useridandaccepted/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"useridandaccepted",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookingAllNotRenderedAndAccepted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accepted\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/booking/acceptednotrendered",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"acceptednotrendered"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetFirstDateByIbn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/booking/firstdate/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"firstdate",
+								"2"
 							]
 						}
 					},
@@ -494,9 +955,28 @@
 				},
 				{
 					"name": "copyGetAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/copy/",
 							"host": [
@@ -513,9 +993,28 @@
 				},
 				{
 					"name": "copyGetById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/copy/1",
 							"host": [
@@ -524,6 +1023,274 @@
 							"port": "8080",
 							"path": [
 								"copy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "copyBooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/copy/isfull/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"copy",
+								"isfull",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "copyBookIbn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/copy/bookibn/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"copy",
+								"bookibn",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "request",
+			"item": [
+				{
+					"name": "requestGetByBookIbn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/request/book/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"request",
+								"book",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requestGetAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/request/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"request",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requestGetByUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyODk0Mjc4MywiaWF0IjoxNjI3NTYwMzgzfQ.01wHGGI9J2-1HxlzMLhnb4eaYDQJyVsfWtcJ2x2tPaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/request/user/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"request",
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addRequest",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyNTQyMDA5NCwiaWF0IjoxNjI1Mzg0MDk0fQ.1iQrYmFzzvkolRmZFXX1M0yXUpA2ZLDpQGeXSeG4qZc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/request/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"request",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "token",
+			"item": [
+				{
+					"name": "getToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "password",
+								"value": "$2a$10$rBH/auEBl4jC2PfdFaodJunzYlyBVsMWc56Q5VtJ9Id7v9/BJXsjq",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/token/authentication/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"token",
+								"authentication",
 								"1"
 							]
 						}

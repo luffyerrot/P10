@@ -21,12 +21,6 @@ public class Request {
 	@Column(name = "id")
     private Long id;
 	
-	@Column(nullable=true)
-	private Boolean accepted;
-	
-	@Column(nullable=true)
-	private Date accepted_time;
-	
 	@Column(nullable=false)
 	private Date release_date;
 	
@@ -84,21 +78,5 @@ public class Request {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Boolean getAccepted() {
-		return accepted;
-	}
-
-	public void setAccepted(Boolean accepted) {
-		this.accepted = accepted;
-	}
-
-	public Date getAccepted_time() {
-		return accepted_time;
-	}
-
-	public void setAccepted_time(Date accepted_time) {
-		this.accepted_time = accepted_time;
 	}
 }

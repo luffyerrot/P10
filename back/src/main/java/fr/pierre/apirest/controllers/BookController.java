@@ -103,7 +103,7 @@ public class BookController {
 	@PutMapping("/save")
 	public ResponseEntity<Book> saveBook(@RequestBody Book book) {
 
-		Book book1 = bookService.create(book);
+		Book book1 = bookService.save(book);
 		return ResponseEntity.ok(book1);
 	}
 

@@ -40,8 +40,10 @@ public class RequestController {
 	@GetMapping("/")
 	public ResponseEntity<List<Request>> getAll() {
 		List<Request> requests = requestService.getAll();
-		requests.forEach(r -> r.setBook(new Book(r.getBook().getIbn(), r.getBook().getTitle(), r.getBook().getAuthor(), r.getBook().getPublisher())));
-		requests.forEach(r -> r.setUser(new User(r.getUser().getId(), r.getUser().getEmail(), r.getUser().getUsername())));
+		if (requests != null) {
+			requests.forEach(r -> r.setBook(new Book(r.getBook().getIbn(), r.getBook().getTitle(), r.getBook().getAuthor(), r.getBook().getPublisher())));
+			requests.forEach(r -> r.setUser(new User(r.getUser().getId(), r.getUser().getEmail(), r.getUser().getUsername())));
+		}
 		return ResponseEntity.ok(requests);
 	}
 
@@ -95,7 +97,7 @@ public class RequestController {
 	public ResponseEntity<Request> updateRequest(@PathVariable Long id, @RequestBody Request request) {
 		Request requestById = requestService.getbyId(id);
 		if (requestById != null && request.getId() == requestById.getId()) {
-			return ResponseEntity.ok(requestService.add(request));
+			return ResponseEntity.ok(requestService.update(request));
 		}
 		return ResponseEntity.notFound().build();
 	}

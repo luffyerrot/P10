@@ -20,9 +20,13 @@ public class CopyService {
 
 	public Copy getById(Long id) {
 		this.logger.debug("getById Call = " + id);
-		Copy copy = copyRepository.findById(id).get();
-		this.logger.debug("getById Return = " + copy);
-		return copy;
+		if (copyRepository.findById(id).isPresent()) {
+			Copy copy = copyRepository.findById(id).get();
+			this.logger.debug("getById Return = " + copy);
+			return copy;
+		} else {
+			return null;
+		}
 	}
 
 	public Copy save(Copy copy) {
@@ -30,6 +34,13 @@ public class CopyService {
 		Copy copyreturn = copyRepository.save(copy);
 		this.logger.debug("save Return = " + copyreturn);
 		return copyreturn;
+	}
+	
+	public Copy update(Copy copy) {
+		this.logger.debug("update Call = " + copy);
+		Copy copyReturn = copyRepository.save(copy);
+		this.logger.debug("update Return = " + copyReturn);
+		return copyReturn;
 	}
 	
 	public void delete(Long id) {

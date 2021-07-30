@@ -474,8 +474,6 @@ public class BookingService {
 				date = c.getTime();
 				
 				request.setRelease_date(date);
-				request.setAccepted(null);
-				request.setAccepted_time(null);
 				
 				HttpEntity<Request> entityRequest = new HttpEntity<Request>(request, entity.getHeaders());
 				

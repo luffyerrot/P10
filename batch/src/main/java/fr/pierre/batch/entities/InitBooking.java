@@ -31,16 +31,18 @@ public class InitBooking {
 	public Booking toObjectCheckUserAccept(JSONObject json) throws ParseException, JSONException {
 		Booking booking = new Booking();
 		booking.setId(json.getLong("id"));
-		String date = json.getString("booking_date").substring(0, 10) + " " + json.getString("booking_date").substring(11, 19);
+		String date = json.getString("booking_date").substring(0, 10);
 		Date date1;
-		date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date);
+		date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		booking.setBooking_date(date1);
 		Object userClaim = json.get("userClaim");
-		if (JSONObject.NULL.equals(userClaim)) {
+		if (userClaim == null) {
 			booking.setUserClaim(null);
+		} else if (userClaim == "false") {
+			booking.setUserClaim(false);
 		} else {
-			booking.setUserClaim((Boolean)userClaim);
-		} 
+			booking.setUserClaim(true);
+		}
 		return booking;
 	}
 	

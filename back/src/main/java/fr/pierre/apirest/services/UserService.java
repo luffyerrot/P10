@@ -94,9 +94,9 @@ public class UserService {
 
 	public User updateUser(User user) {
 		this.logger.debug("updateUser Call = " + user);
-		User userreturn = userRepository.updateUser(user.getId(), user.getUsername(), user.getEmail());
-		this.logger.debug("updateUser Return = " + userreturn);
-		return userreturn; 
+		User userReturn = userRepository.save(user);
+		this.logger.debug("updateUser Return = " + userReturn);
+		return userReturn;
 	}
 	
 	public void deleteById(Long id) {

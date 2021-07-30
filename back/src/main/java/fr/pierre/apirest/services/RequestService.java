@@ -20,9 +20,12 @@ public class RequestService {
 	Logger logger = LoggerFactory.getLogger(RequestService.class);
 
 	public List<Request> getAll() {
-		List<Request> requests = requestRepository.findAll();
-		this.logger.debug("getAll Return = " + requests);
-		return requests;
+		if (!requestRepository.findAll().isEmpty()) {
+			List<Request> requests = requestRepository.findAll();
+			this.logger.debug("getAll Return = " + requests);
+			return requests;
+		}
+		return null;
 	}
 	
 	public Request getbyId(Long id) {
@@ -51,6 +54,13 @@ public class RequestService {
 		Request requestreturn = requestRepository.save(request);
 		this.logger.debug("add Return = " + requestreturn);
 		return requestreturn;
+	}
+	
+	public Request update(Request request) {
+		this.logger.debug("update Call = " + request);
+		Request requestReturn = requestRepository.save(request);
+		this.logger.debug("update Return = " + requestReturn);
+		return requestReturn;
 	}
 
 	public void delete(Long id) {

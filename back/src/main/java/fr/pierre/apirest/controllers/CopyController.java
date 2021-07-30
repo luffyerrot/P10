@@ -48,9 +48,8 @@ public class CopyController {
 		if (copyById != null) {
 			copyById.setBook(new Book(copyById.getBook().getIbn(), copyById.getBook().getTitle(), copyById.getBook().getAuthor(), copyById.getBook().getPublisher()));
 			copyById.setBookings(null);
-			return ResponseEntity.ok(copyById);
 		}
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(copyById);
 	}
 
     /**
@@ -84,7 +83,7 @@ public class CopyController {
 	public ResponseEntity<Copy> updateCopy(@PathVariable Long id, @RequestBody Copy copy) {
 		Copy copyById = copyService.findById(id);
 		if (copyById != null && copy.getId() == copyById.getId()) {
-			return ResponseEntity.ok(copyService.save(copy));
+			return ResponseEntity.ok(copyService.update(copy));
 		}
 		return ResponseEntity.notFound().build();
 	}

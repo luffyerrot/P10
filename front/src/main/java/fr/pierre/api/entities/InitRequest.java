@@ -35,8 +35,6 @@ public class InitRequest {
 		json.put("book", "");
 		json.put("user", "");
 		json.put("id", request.getId());
-		json.put("accepted", request.getAccepted());
-		json.put("accepted_time", request.getAccepted_time());
 		json.put("release_date", request.getRelease_date());
 		return json;
 	}

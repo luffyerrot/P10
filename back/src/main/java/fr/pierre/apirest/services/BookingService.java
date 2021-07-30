@@ -27,9 +27,14 @@ public class BookingService {
 	
 	public Booking getById(Long id) {
 		this.logger.info("getById Call = " + id);
-		Booking booking =  bookingRepository.findById(id).get();
-		this.logger.info("getById Return = " + booking);
-		return booking;
+		if (bookingRepository.findById(id).isPresent()) {
+			System.out.println("pomme-------------");
+			Booking booking =  bookingRepository.findById(id).get();
+			this.logger.info("getById Return = " + booking);
+			return booking;
+		} else {
+			return null;
+		}
 	}
 	
 	public List<Booking> getByUserId(Long id) {
@@ -76,9 +81,9 @@ public class BookingService {
 	
 	public Booking update(Booking booking) {
 		this.logger.debug("update Call = " + booking);
-		Booking bookingreturn = bookingRepository.update(booking, booking.getId());
-		this.logger.debug("update Return = " + bookingreturn);
-		return bookingreturn;
+		Booking bookingReturn = bookingRepository.save(booking);
+		this.logger.debug("update Return = " + bookingReturn);
+		return bookingReturn;
 	}
 	
 	public List<Booking> getByCopyId(Long idCopy) {

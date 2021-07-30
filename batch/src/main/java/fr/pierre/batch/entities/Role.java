@@ -9,7 +9,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable{
-
+	
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
+	@Column(nullable = false, unique = true)
+    private String name;
+	
 	public Role() {
 		
 	}
@@ -19,18 +26,11 @@ public class Role implements Serializable{
 		this.name = name;
 		this.users = user;
 	}
-	
-	@Id 
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-	@Column(nullable = false, unique = true)
-    private String name;
     
 	//---------------------------------------------------------------------------------
 	
 	@ManyToMany(mappedBy = "roles")
-    private List <User> users;
+    private List<User> users;
 
 	//---------------------------------------------------------------------------------
 

@@ -52,6 +52,7 @@ public class Booking {
 		this.user = user;
 		this.delay = false;
 		this.recall = 0;
+		this.rendering = false;
 	}
 	
 	@Override
