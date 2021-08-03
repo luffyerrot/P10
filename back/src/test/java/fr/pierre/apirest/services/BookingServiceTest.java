@@ -3,11 +3,14 @@ package fr.pierre.apirest.services;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import fr.pierre.apirest.entities.Booking;
@@ -20,6 +23,8 @@ public class BookingServiceTest {
 	BookingService bookingService;
 	
 	@Test
+	@Transactional
+	@Rollback
 	public void saveUpdateDeleteProcessBooking() {
 		Booking booking = new Booking(new Date(), null, null);
 				

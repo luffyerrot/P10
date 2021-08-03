@@ -2,6 +2,25 @@ CREATE DATABASE `projet7` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4
 
 Use `projet7`;
 
+CREATE TABLE `bookings` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `booking_date` datetime NOT NULL,
+  `delay` bit(1) NOT NULL,
+  `recall` int(11) DEFAULT NULL,
+  `rendering` bit(1) NOT NULL,
+  `copy_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `accepted` bit(1) DEFAULT NULL,
+  `user_claim` bit(1) DEFAULT NULL,
+  `userclaim` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK9vmpxp9uks32y87bqo5bw3qsq` (`copy_id`),
+  KEY `FKeyog2oic85xg7hsu2je2lx3s6` (`user_id`),
+  CONSTRAINT `FK9vmpxp9uks32y87bqo5bw3qsq` FOREIGN KEY (`copy_id`) REFERENCES `copies` (`id`),
+  CONSTRAINT `FKeyog2oic85xg7hsu2je2lx3s6` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+SELECT * FROM projet7.bookings;
+
 CREATE TABLE `books` (
   `ibn` bigint(20) NOT NULL AUTO_INCREMENT,
   `author` varchar(255) NOT NULL,
@@ -9,7 +28,28 @@ CREATE TABLE `books` (
   `release_date` datetime NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`ibn`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `copies` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `etat` varchar(255) NOT NULL,
+  `book_ibn` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKl701dloi55rnwt199d3bwdeui` (`book_ibn`),
+  CONSTRAINT `FKl701dloi55rnwt199d3bwdeui` FOREIGN KEY (`book_ibn`) REFERENCES `books` (`ibn`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `requests` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `release_date` datetime NOT NULL,
+  `book_ibn` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK30x23857e2udjqr7a7dmbahnn` (`book_ibn`),
+  KEY `FK8usbpx9csc6opbjg1d7kvtf8c` (`user_id`),
+  CONSTRAINT `FK30x23857e2udjqr7a7dmbahnn` FOREIGN KEY (`book_ibn`) REFERENCES `books` (`ibn`),
+  CONSTRAINT `FK8usbpx9csc6opbjg1d7kvtf8c` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `roles` (
   `id` bigint(20) NOT NULL,
@@ -17,15 +57,6 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_ofx66keruapi6vyqpv6f2or37` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `users` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`)
-)ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `user_role` (
   `user_id` bigint(20) NOT NULL,
@@ -36,26 +67,11 @@ CREATE TABLE `user_role` (
   CONSTRAINT `FKt7e7djp752sqn6w22i6ocqy6q` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `copies` (
+CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `etat` varchar(255) NOT NULL,
-  `book_ibn` bigint(20) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKl701dloi55rnwt199d3bwdeui` (`book_ibn`),
-  CONSTRAINT `FKl701dloi55rnwt199d3bwdeui` FOREIGN KEY (`book_ibn`) REFERENCES `books` (`ibn`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `bookings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `booking_date` datetime NOT NULL,
-  `delay` bit(1) NOT NULL,
-  `recall` int(11) DEFAULT NULL,
-  `rendering` bit(1) NOT NULL,
-  `copy_id` bigint(20) DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK9vmpxp9uks32y87bqo5bw3qsq` (`copy_id`),
-  KEY `FKeyog2oic85xg7hsu2je2lx3s6` (`user_id`),
-  CONSTRAINT `FK9vmpxp9uks32y87bqo5bw3qsq` FOREIGN KEY (`copy_id`) REFERENCES `copies` (`id`),
-  CONSTRAINT `FKeyog2oic85xg7hsu2je2lx3s6` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

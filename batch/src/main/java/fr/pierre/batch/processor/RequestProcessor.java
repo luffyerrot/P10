@@ -2,16 +2,19 @@ package fr.pierre.batch.processor;
 
 import java.util.Date;
 
+import org.json.JSONObject;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.client.RestTemplate;
 
 import fr.pierre.batch.entities.Booking;
 import fr.pierre.batch.entities.Copy;
+import fr.pierre.batch.entities.InitCopy;
 import fr.pierre.batch.entities.RequestAndCopy;
 import fr.pierre.batch.entities.User;
 import fr.pierre.batch.util.Token;
@@ -24,6 +27,7 @@ public class RequestProcessor implements ItemProcessor<RequestAndCopy, Long> {
 	Token token = new Token();
 	
 	private RestTemplate restTemplate = new RestTemplate();
+	private InitCopy init = new InitCopy();
 	
 	@Override
 	public Long process(RequestAndCopy item) throws Exception {
@@ -40,8 +44,18 @@ public class RequestProcessor implements ItemProcessor<RequestAndCopy, Long> {
 			
 			restTemplate.exchange(uriSave, HttpMethod.PUT, entityBooking, String.class);
 
-			//sendEmailToUser(requestInfo.getUser().getEmail(), item.getCopy());
+			Copy copy = null;
 			
+			final String uriCopy = "http://localhost:8080/copy/" + item.getCopyId();
+			HttpEntity<String> entity = new HttpEntity<String>(headers);
+			ResponseEntity<String> copyString = restTemplate.exchange(uriCopy, HttpMethod.GET, entity, String.class);
+			JSONObject json = new JSONObject(copyString.getBody());
+			copy = init.toObject(json);
+			
+			if (copy != null) {
+				
+				sendEmailToUser(item.getEmail(), copy);
+			}
 			return item.getRequestId();
 		}
 		return null;
