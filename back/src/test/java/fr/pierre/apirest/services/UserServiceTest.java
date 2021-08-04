@@ -1,7 +1,5 @@
 package fr.pierre.apirest.services;
 
-import javax.transaction.Transactional;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +18,6 @@ public class UserServiceTest {
 	UserService userService;
 	
 	@Test
-	@Transactional
 	@Rollback
 	public void saveUpdateDeleteProcessUser() {
 		User user = new User();

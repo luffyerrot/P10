@@ -208,9 +208,12 @@ public class BookingController {
 	@PutMapping("/extend/{id}")
 	public void extend(@PathVariable Long id) {
 		Booking booking = bookingService.getById(id);
-		if (booking.getDelay() == false && booking.getBooking_date().after(new Date())) {
-			bookingService.changeDelay(booking, true);
-			bookingService.extend(booking);
+		double hours = ((new Date().getTime() - booking.getBooking_date().getTime()) / (1000 * 60 * 60));
+		if (hours < 720) {
+			if (booking.getDelay() == false) {
+				bookingService.changeDelay(booking, true);
+				bookingService.extend(booking);
+			}
 		}
 	}
 

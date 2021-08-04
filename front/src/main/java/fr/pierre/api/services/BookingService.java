@@ -429,8 +429,11 @@ public class BookingService {
 		}
 		
 		for (int i = 0; i < bookings.size(); i ++) {
-			if (bookings.get(i).getUser().getId().equals(userService.getUserEmail(email).getId())) {
-				return ResponseEntity.notFound().build();
+			if (bookings.get(i).getCopy().getBook().getIbn().equals(ibn)) {
+				if (bookings.get(i).getUser().getId().equals(userService.getUserEmail(email).getId())) {
+	
+					return ResponseEntity.notFound().build();
+				}
 			}
 		}
 		
@@ -448,17 +451,18 @@ public class BookingService {
 		
 		if (restTemplate.exchange(uriGet, HttpMethod.GET, entity, String.class) != null) {
 			ResponseEntity<String> result = restTemplate.exchange(uriGet, HttpMethod.GET, entity, String.class);
-			
-			JSONArray jsonRequest = new JSONArray(result.getBody());
 			List<Long> idUserRequest = new ArrayList<>();
 			List<Request> requests = new ArrayList<>();
-			for (Object o: jsonRequest) {
-				idUserRequest.add(((JSONObject)o).getJSONObject("user").getLong("id"));
-				if (book.getIbn().equals(((JSONObject) o).getJSONObject("book").getLong("ibn"))) {
-					try {
-						requests.add(initRequest.toObject((JSONObject) o));
-					} catch (JSONException | ParseException e) {
-						e.printStackTrace();
+			if (result.getBody() != null && !result.getBody().isEmpty()) {
+				JSONArray jsonRequest = new JSONArray(result.getBody());
+				for (Object o: jsonRequest) {
+					idUserRequest.add(((JSONObject)o).getJSONObject("user").getLong("id"));
+					if (book.getIbn().equals(((JSONObject) o).getJSONObject("book").getLong("ibn"))) {
+						try {
+							requests.add(initRequest.toObject((JSONObject) o));
+						} catch (JSONException | ParseException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}

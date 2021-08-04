@@ -64,7 +64,7 @@ public class RequestProcessor implements ItemProcessor<RequestAndCopy, Long> {
 	private void sendEmailToUser(String email, Copy copy) {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("no-reply@projet7.com");
+        message.setFrom("no-reply@projet10.com");
         message.setTo(email);
         message.setSubject("Claim your book" + copy.getBook().getTitle().toString());
         message.setText("Hello, You have received this automated email to warn you that you had 48H to claim the book " + copy.getBook().getTitle().toString() + ". The reference are '" + 
